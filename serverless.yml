@@ -1,0 +1,35 @@
+service: newService
+
+provider:
+  name: aws
+  runtime: java8
+
+  stage: QA
+  region: us-east-1
+ 
+
+package:
+  artifact: target/hello-dev.jar
+
+functions:
+  hello:
+    handler: com.serverless.Handler.handleRequest
+    
+    events:
+      - http: 
+          path: service
+          method: post 
+          integration: lambda 
+    aliases:
+       - Kedar  
+  hey:
+    handler: com.serverless.Handler1.handleRequest
+    
+    events:
+      - http: 
+          path: details
+          method: get 
+          integration: lambda   
+    aliases:
+       - Kedar   
+ 
